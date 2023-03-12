@@ -22,14 +22,59 @@
   </head>
   <body>
     <div class="bg-gray-600">
-      <div class="mx-auto w-full" style="max-width: 680px">
-        <a href="https://datalab.tools/" class="block">
+      <div class="mx-auto w-full" style="max-width: 960px;">
+        <div class="bg-yellow-500 text-yellow-100 text-center py-4 sticky top-0">
+          <p id="countdown" class="text-base font-bold"></p>
+        </div>
+        <a id="links" href="https://datalab.tools/" class="block">
           <img class="w-full" src="https://blog.kakaocdn.net/dn/cx1CZl/btr3c3nmKj5/KOl9aDmOgyl1tw36UQ98E1/img.png" />
-        </a>
-        <a href="https://datalab.tools/" class="block">
-          <img class="w-full" src="https://blog.kakaocdn.net/dn/OlKXb/btr3cCDyy3h/8JZeqa5Pr4ZaOjHMmjCLKK/img.png" />
+          <img class="w-full" src="https://blog.kakaocdn.net/dn/blipwO/btr3CncMgg9/Kkjk7eOsnJONceD32OTqUk/img.png" />
         </a>
       </div>
     </div>
+    <script>
+    const deadline = new Date("2023-03-15T11:00:00Z");
+
+    function getTimeRemaining(endtime) {
+      const total = Date.parse(endtime) - Date.parse(new Date());
+      const seconds = Math.floor((total / 1000) % 60);
+      const minutes = Math.floor((total / 1000 / 60) % 60);
+      const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+      return {
+        total,
+        days,
+        hours,
+        minutes,
+        seconds,
+      };
+    }
+
+    function initializeClock(id, endtime) {
+      const clock = document.getElementById(id);
+      const links = document.getElementById('links');
+      function updateClock() {
+        const t = getTimeRemaining(endtime);
+
+        if (t.total <= 0) {
+          clearInterval(timeinterval);
+          clock.innerHTML = "수강 신청 기한이 완료되었습니다";
+          links.href = 'https://cafe.naver.com/winnerunlock';
+        } else {
+          clock.innerHTML = '';
+          clock.innerHTML+= t.days + '일 ';
+          clock.innerHTML+= ("0" + t.hours).slice(-2) + '시간 ';
+          clock.innerHTML+= ("0" + t.minutes).slice(-2) + '분 ';
+          clock.innerHTML+= ("0" + t.seconds).slice(-2) + '초 남음';
+        }
+      }
+
+      updateClock();
+      const timeinterval = setInterval(updateClock, 1000);
+    }
+
+    initializeClock("countdown", deadline);
+    </script>
   </body>
 </html>
