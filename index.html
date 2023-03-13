@@ -39,6 +39,14 @@
           <img class="w-full" src="https://blog.kakaocdn.net/dn/cx1CZl/btr3c3nmKj5/KOl9aDmOgyl1tw36UQ98E1/img.png" />
           <img class="w-full" src="https://blog.kakaocdn.net/dn/blipwO/btr3CncMgg9/Kkjk7eOsnJONceD32OTqUk/img.png" />
         </a>
+        <script SameSite="None; Secure" src="https://cdn.landbot.io/landbot-3/landbot-3.0.0.js"></script>
+        <div id="myLandbot" style="width: 100%; height: 500px"></div>
+        <script>
+          var myLandbot = new Landbot.Container({
+            container: '#myLandbot',
+            configUrl: 'https://storage.googleapis.com/landbot.pro/v3/H-1519003-M25812GDA9X938XX/index.json',
+          });
+        </script>
         <script>
           window.addEventListener('mouseover', initLandbot, { once: true });
           window.addEventListener('touchstart', initLandbot, { once: true });
